@@ -96,12 +96,24 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 
 当你要加入一个新的UE4团队时，你应该首先问他们有没有项目规范，如果没有的话，你该怀疑他们是否有能力像一个真正的团队那样工作
 
+<a name="0.5"></a>
+### 0.5 不要违法
+作者并不是律师，不过也要郑重提出，请不要针对工程做违法行为，包括但不限于以下几条：
+* 不要传播你没有权限传播的工程内容
+* 不要违反任何版权协议和商标法
+* 不要偷窃工程资产
+* 遵守资源的版权协议，如果需要设定资源的归属方，就一定要这么做
+
 <a name="toc"></a>
 ## 目录
 
 > 1. [资源命名约定](#anc)
 > 1. [目录结构](#structure)
 > 1. [蓝图](#bp)
+> 1. [静态网格](#s)
+> 1. [粒子系统](#ps)
+> 1. [关卡/地图](#levels)
+> 1. [纹理](#textures)
 
 <a name="anc"></a>
 <a name="1"></a>
@@ -178,7 +190,7 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 
 > 1.2.9 物理[Physics](#anc-physics)
 
-> 1.2.10 声音[Sound](#anc-sound)
+> 1.2.10 声音[Sound](#anc-sounds)
 
 > 1.2.11 界面[User Interface](#anc-ui)
 
@@ -198,11 +210,11 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Level (Gameplay)        |            | _Gameplay  |                                  |
 | Blueprint               | BP_        |            |                                  |
 | Material                | M_         |            |                                  |
-| Static Mesh             | S_ or SM_  |            | 选一个，建议使用 S_.             |
+| Static Mesh             | S_         |            | 很多人用SM_，我们用S_            |
 | Skeletal Mesh           | SK_        |            |                                  |
 | Texture                 | T_         | _?         | 参照[纹理](#anc-textures)        |
 | Particle System         | PS_        |            |                                  |
-| Widget Blueprint        | WBP_ or WB_|            | 选一个，建议使用 WBP_.           |
+| Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-animations"></a>
 <a name="1.2.2"></a>
@@ -215,7 +227,7 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Animation Blueprint     | ABP_       |            |                                  |
 | Animation Composite     | AC_        |            |                                  |
 | Animation Montage       | AM_        |            |                                  |
-| Animation Sequence      | A_ or AS_  |            | 选一个，建议使用 A_.             |
+| Animation Sequence      | A_         |            |                                  |
 | Blend Space             | BS_        |            |                                  |
 | Blend Space 1D          | BS_        |            |                                  |
 | Level Sequence          | LS_        |            |                                  |
@@ -237,6 +249,8 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Decorator               | BTDecorator_ |          |                                  |
 | Service                 | BTService_ |            |                                  |
 | Task                    | BTTask_    |            |                                  |
+| Environment Query       | EQS_       |            |                                  |
+| EnvQueryContext         | EQS_       | Context    |                                  |
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
@@ -245,12 +259,14 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | 资源类型                | 前缀       | 后缀       | 备注                             |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Blueprint               | BP_        |            |                                  |
+| Blueprint Component     | BP_        | Component  | 例如: BP_InventoryComponent      |
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
 | Blueprint Macro Library | BPML_      |            | 可能的话尽量不要使用蓝图宏       |
 | Enumeration             | E          |            | 没有下划线                       |
 | Structure               | F or S     |            | 没有下划线                       |
-| Widget Blueprint        | WBP_ or WB_|            | 选一个，建议使用 WBP_.           |
+| Tutorial Blueprint      | TBP_       |            |                                  |
+| Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
@@ -263,7 +279,7 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Material Function       | MF_        |            |                                  |
 | Material Instance       | MI_        |            |                                  |
 | Material Parameter Collection | MPC_ |            |                                  |
-| Subsurface Profile      | SP_ or SSP_|            | 选一个，建议使用 SP_.            |
+| Subsurface Profile      | SP_       _|            |                                  |
 | Physical Materials      | PM_        |            |                                  |
 
 <a name="anc-textures"></a>
@@ -277,7 +293,7 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Texture (Normal)        | T_         | _N         |                                  |
 | Texture (Roughness)     | T_         | _R         |                                  |
 | Texture (Alpha/Opacity) | T_         | _A         |                                  |
-| Texture (Ambient Occlusion) | T_     | _O or _AO  | 选一个，建议使用 _O.             |
+| Texture (Ambient Occlusion) | T_     | _O         |                                  |
 | Texture (Bump)          | T_         | _B         |                                  |
 | Texture (Emissive)      | T_         | _E         |                                  |
 | Texture (Mask)          | T_         | _M         |                                  |
@@ -285,11 +301,11 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Texture (Packed)        | T_         | _*         | 参见下面的[纹理打包备注](#anc-textures-packing). |
 | Texture Cube            | TC_        |            |                                  |
 | Media Texture           | MT_        |            |                                  |
-| Render Target           | RT_ or RTT_|            | 选一个，建议使用 RT_.            |
+| Render Target           | RT_       _|            |                                  |
 | Cube Render Target      | RTC_       |            |                                  |
 | Texture Light Profile   | TLP        |            |                                  |
 
-<a name="anc-textures-packing"</a>
+<a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
 #### 1.2.6.1 纹理合并 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 把多张纹理存于一个纹理文件中是很常见的方法，比如通常可以把自发光(Emissive), 粗糙度(Roughness), 环境光(Ambient Occlusion)以RGB通道的形式保存在纹理中，然后在文件的后缀中，注明这些信息，例如`_EGO`
@@ -372,7 +388,7 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | Font                    | Font_      |            |                                  |
 | Slate Brush             | Brush_     |            |                                  |
 | Slate Widget Style      | Style_     |            |                                  |
-| Widget Blueprint        | WBP_ or WB_|            | 选一个，建议使用 WBP_.           |
+| Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
@@ -382,6 +398,9 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Particle System         | PS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
+
+**[⬆ 回到最顶端](#table-of-contents)**
+
 
 <a name="2"></a>
 <a name="structure"></a>
@@ -627,6 +646,23 @@ Gamemakin LLC 有一个公开的讨论板块，地址是http://discord.gamemak.i
 
 任何用来测试或调试的材质应该保存在`MaterialLibrary/Debug`中，这样当工程正式发布时，可以很容易把这些材质从删除，因为这些材质如果不删除，可能在最终产品中非常扎眼。
 
+<a name="2.9"></a>
+<a name="structure-no-empty-folders"></a>
+### 2.9 不要有空目录 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+不要存在空的目录，这回干扰引擎资源浏览器的正常工作
+如果你发现你的资源浏览器中存在空目录，并且还删不掉，你应该尝试以下步骤
+1. 确保你使用了版本控制工具
+1. 立即运行引擎中的资源重定向功能
+1. 在编辑器中定位到空目录，然后删除它
+1. 关闭编辑器
+1. 确保版本工具的同步功能正常（比如如果你用了Perforce, 在资源目录上运行离线Reconcile功能）
+1. 重新打开编辑器，确认一切工作正常，如果没有，那就回退刚才的操作，判断下到底哪儿出问题了，然后重新尝试
+1. 确保目录已经被删掉了
+1. 在版本控制工具中提交修改
+
+**[⬆ 回到最顶端](#table-of-contents)**
+
+
 <a name="3"></a>
 <a name="bp"></a>
 ## 3. 蓝图 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
@@ -676,9 +712,7 @@ Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](htt
 
 > 3.2.6 临时变量[Transient](#bp-vars-transient)
 
-> 3.2.7 游戏存档[SaveGame](#bp-vars-savegame)
-
-> 3.2.8 配置[Config](#bp-vars-config)
+> 3.2.7 配置[Config](#bp-vars-config)
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
@@ -828,7 +862,7 @@ String和vectors在蓝图中也属于原生变量类型，但严格来讲它们�
 
 <a name="3.2.2.1"></a>
 <a name="bp-vars-editable-tooltips"></a>
-##### 3.2.2.1 Tooltips ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.1 Tooltips ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 对于所有标记为`Editable`的变量，包括被标记为 `Expose On Spawn`的变量，都应该在其`Tooltip`内填写关于如何改变变量值，以及会产生何种效果的说明。
 
@@ -901,16 +935,8 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 因此，所有Transient类型变量都应该被初始化成0或者null。如果是其他值会增加调试bug的时候的难度。
 
 <a name="3.2.7"></a>
-<a name="bp-vars-savegame"></a>
-#### 3.2.7 SaveGame变量 ![#](https://img.shields.io/badge/lint-supported-green.svg)
-
-只有从`SaveGame`继承的子类中的成员变量才能够使用SaveGame属性，并且确保该变量应该被保存时才把这个属性设置上
-
-绝对**不要**将`SaveGame` 和 `Transient`同时使用，这是明显不合理的。
-
-<a name="3.2.8"></a>
 <a name="bp-vars-config"></a>
-#### 3.2.8 Config变量 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.7 Config变量 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 不要使用`Config Variable`这个标记，这会让设计师在控制蓝图行为上更加困难。这个标记一般用在C++中，用来标记那些极少被改变的变量，你可以认为它们是那些被标上`Advanced Advanced Display`的变量
 
@@ -921,8 +947,8 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 这一节用来解释应该如何管理函数、事件以及事件派发器。除非特殊说明，所有适用于函数的规则，同样适用于事件。
 
 <a name="3.3.1"></a>
-<a name="bp-funcs-naming"></a>
-#### 3.3.1 函数命名
+<a name="bp-funcs-naming"></a> 
+#### 3.3.1 函数命名 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 对于函数、事件以及事件派发器的命名极其重要，仅仅从一个名字本身，就有很多条件要考虑，比如说：
 
@@ -936,7 +962,7 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
-#### 3.3.1.1 所有函数的命名都应该是动词
+#### 3.3.1.1 所有函数的命名都应该是动词 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 所有函数和事件执行者都是需要做一些动作，可能是去获取信息，也可能是数据计算，或者搞点什么事情。因此，所有函数都应该用动词开始，并且用一般现代时态，并且有上下文来表明它们究竟在做什么
 
@@ -965,13 +991,13 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 
 <a name="3.3.1.2"></a>
 <a name="bp-funcs-naming-onrep"></a>
-#### 3.3.1.2 属性的状态变化响应函数应该命名为`OnRep_Variable`
+#### 3.3.1.2 属性的状态变化响应函数应该命名为`OnRep_Variable` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 所有用来响应状态变化的函数应该用`OnRep_Variable`的形式，这是由蓝图编辑器强制规定的，如果你在C++中写`OnRep`函数，应该同样遵守这个规则。
 
 <a name="3.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
-#### 3.3.1.3 返回布尔变量的信息查询函数应该是问询函数
+#### 3.3.1.3 返回布尔变量的信息查询函数应该是问询函数 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 如果一个函数不改变类的状态，并且只是返回信息、状态或者计算返回给调用者yes/no，这应该是一个问询函数。同样遵守[动词规则](#bp-funcs-naming-verbs)。
 
@@ -998,7 +1024,7 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 
 <a name="3.3.1.4"></a>
 <a name="bp-funcs-naming-eventhandlers"></a>
-#### 3.3.1.4 事件的响应函数和派发函数都应该以`On`开头
+#### 3.3.1.4 事件的响应函数和派发函数都应该以`On`开头 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 事件的响应函数和派发函数都应该以`On`开头，然后遵守[动词规则](#bp-funcs-naming-verbs)，如果是过去式，那么动词应该移到最后以方便阅读
 
@@ -1025,7 +1051,7 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 
 <a name="3.3.1.5"></a>
 <a name="bp-funcs-naming-rpcs"></a>
-#### 3.3.1.5 远程调用函数应该用目标作为前缀
+#### 3.3.1.5 远程调用函数应该用目标作为前缀 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 任何时候创建RPC函数，都应该把目标作为前缀放在前面，例如`Server`、 `Client`或者 `Multicast`，没有例外。
 
@@ -1047,7 +1073,7 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 
 <a name="3.3.2"></a>
 <a name="bp-funcs-return"></a>
-#### 3.3.2 所有函数都应该有返回节点
+#### 3.3.2 所有函数都应该有返回节点 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 所有函数都应该有返回节点，没有例外。
 
@@ -1059,7 +1085,7 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 
 <a name="3.3.3"></a>
 <a name="bp-graphs-funcs-node-limit"></a>
-#### 3.3.3 蓝图函数中节点数不应该超过50个
+#### 3.3.3 蓝图函数中节点数不应该超过50个 ![#](https://img.shields.io/badge/lint-supported-green.svg)
 简单来说，蓝图函数中的节点数应该小于50个，如果函数过于复杂，应该把它分割成几个小一点的函数，以便更好的阅读和维护。
 在蓝图中添加以下节点不用计算个数，因为它们并不会增加蓝图的复杂度：
 
@@ -1071,23 +1097,33 @@ Transient类型的变量是指那些不需要被序列化（保存或者加载�
 * Function Entry - 函数入口
 * Self - 自身节点
 
+<a name="3.3.4"></a>
+<a name="bp-graphs-funcs-description"></a>
+#### 3.3.4 所有Public类型函数都应该有函数描述 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+这条规则重点针对那些面向大众或者放在市场上出售的蓝图，这样其他开发者才能更轻松的阅读和使用你的蓝图API
+简单来说，在定义任何可能用于其他人使用的函数时，都应该把函数描述写清楚
 
+<a name="3.3.5"></a>
+<a name="bp-graphs-funcs-plugin-category"></a>
+#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+如果你的工程中所使用的插件定义了一些带有`static` `BlueprintCallable`属性的函数，那么这些函数的归类名字中应该使用插件的名字，或者包含有插件的名字。
+比如说`Zed Camera Interface` 或者 `Zed Camera Interface | Image Capturing`。
+ 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
-### 3.4 蓝图图形
+### 3.4 蓝图图形 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 本节包含了关于蓝图图形的内容
-This section covers things that apply to all Blueprint graphs.
 
 <a name="3.4.1"></a>
 <a name="bp-graphs-spaghetti"></a>
-#### 3.4.1 不要画‘意面’
+#### 3.4.1 不要画‘意面’  ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 蓝图中所有连线都应该有清晰的开始点和结束点。你的蓝图不应该让阅读者在一堆乱糟糟的线中翻来翻去。以下内容是帮助你避免‘意大利面’样式的蓝图产生。
 
 <a name="3.4.2"></a>
 <a name="bp-graphs-align-wires"></a>
-#### 3.4.2 保持连线对齐，而不是节点
+#### 3.4.2 保持连线对齐，而不是节点 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 不要试图让节点对齐，对齐的应该是连线。你无法控制一个节点的大小和上面连接点的位置，但你能通过控制节点的位置来控制连线。笔直的连线让整个蓝图清晰美观，歪歪扭扭的连线会让蓝图丑陋不堪。你可以通过蓝图编辑器提供的功能直接让连线变直，方法是选择好节点，用快捷键Q
 
@@ -1102,9 +1138,177 @@ This section covers things that apply to all Blueprint graphs.
 
 <a name="3.4.3"></a>
 <a name="bp-graphs-exec-first-class"></a>
-#### 3.4.3 白色的可执行线优先级最高
+#### 3.4.3 白色的可执行线优先级最高 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-如果发现白色执行线和其他数据线无法同时对齐，白色执行线的优先级更高。
+如果发现白色执行线和其他数据线无法同时拉直，白色执行线的优先级更高。
+
+<a name="3.4.4"></a>
+<a name="bp-graphs-block-comments"></a>
+#### 3.4.4 图中要有良好的注释 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+蓝图节点所组成的图块应该包含在良好的注释块中，用来解释其上层行为。每个函数都应该命名明确，这样有助于理解每个节点的行为，有明确目的的节点组成的节点群也应该包含在注释块中并注明其行为目的。如果一个函数的节点数量很少，并且函数名已经足够描述其行为，那么就不需要再添加注释块了，通过清晰详细的函数名和函数的描述就可以。
+
+<a name="3.4.5"></a>
+<a name="bp-graphs-cast-error-handling"></a>
+#### 3.4.5 图中要恰当的处理类型转换错误 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+如果函数或者事件处理中要用到类型转换，那么当转换失败时，需要恰当的处理。需要让使用者知道，‘本来应该成功’的任务执行失败了。而且转换失败之后，函数应该恢复正常的工作状态。
+当然，并不是每次类型转换都要处理失败的情况，在很多情况下，比如很多和物理碰撞相关的事件处理中，类型转换失败只要悄悄退出函数就可以了。
+
+<a name="3.4.6"></a>
+<a name="bp-graphs-dangling-nodes"></a>
+#### 3.4.6 图不应该有无用的死结点 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+蓝图中的所有节点都应该是有意义的。不要把那些无用的、不会被执行的死结点留在蓝图中
+
+**[⬆ 回到最顶端](#table-of-contents)**
+
+
+<a name="4"></a>
+<a name="Static Meshes"></a>
+<a name="s"></a>
+## 4. 静态模型 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+本节将关注静态模型资源以及其底层
+
+### Sections
+> 4.1 [UVs](#s-uvs)
+> 4.2 [LODs](#s-lods)
+> 4.3 [Modular Socketless Snapping](#s-modular-snapping)
+> 4.4 [Must Have Collision](#s-collision)
+> 4.5 [Correct Scale](#s-scaled)
+  
+<a name="4.1"></a>
+<a name="s-uvs"></a>
+### 4.1 静态模型的UV ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+<a name="4.1.1"></a>
+<a name="s-uvs-no-missing"></a>
+#### 4.1.1 所有模型资源要有UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
+很简单，所有的模型资源，不管你要用来干嘛，都必须要有UV.
+
+<a name="4.1.2"></a>
+<a name="s-uvs-no-overlapping"></a>
+#### 4.1.2 所有模型资源要有二套UV用于烘焙光照 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+同样简单，所有模型资源，不管你要用来干嘛，都应该有二套UV(non-overlapping UV)，用于烘焙光照。
+
+<a name="4.2"></a>
+<a name="s-lods"></a>
+### 4.2 正确设置LOD ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+
+<a name="4.3"></a>
+<a name="s-modular-snapping"></a>
+### 4.3 Modular Socketless Assets Should Snap To The Grid Cleanly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
+ It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+
+<a name="4.4"></a>
+<a name="s-collision"></a>
+### 4.4 所有模型资源都应该有碰撞体 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+无论最终模型是否会参与物理碰撞运算，所有模型资源都应该设定好碰撞体。这有助于引擎的边界、剔除、光照等运算。而且碰撞体应该是认真设定的。
+
+<a name="4.5"></a>
+<a name="s-scaled"></a>
+### 4.5 All Meshes Should Be Scaled Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. 
+ Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction. 
+
+**[⬆ 回到最顶端](#table-of-contents)**
+
+
+<a name="5"></a>
+<a name="Particle Systems"></a>
+<a name="ps"></a>
+## 5. 粒子系统 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+ This section will focus on Particle System assets and their internals.
+本节关注粒子系统以及其底层
+
+### Sections
+> 5.1 发射源的命名[Emitter Naming](#ps-naming)
+<a name="5.1"></a>
+<a name="ps-emitter-naming"></a>
+### 5.1 发射源的命名 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+粒子系统中的所有发射源都应该拥有名字，不要使用系统提供的缺省命名"Particle Emitter"。
+
+**[⬆ 回到最顶端](#table-of-contents)**
+
+
+<a name="6"></a>
+<a name="Levels"></a>
+<a name="levels"></a>
+## 6. 关卡 ![#](https://img.shields.io/badge/lint-supported-green.svg)
+本节关注关卡以及其底层
+ 
+### Sections
+> 6.1 [解决警告和错误](#levels-no-errors-or-warnings)
+> 6.2 [烘焙光照](#levels-lighting-should-be-built)
+> 6.3 [避免Z-fighting问题](#evels-no-visible-z-fighting)
+> 6.4 [针对市场资源的规则](#evels-levels-mp-rules)
+ 
+<a name="6.1"></a>
+<a name="levels-no-errors-or-warnings"></a>
+### 6.1解决警告和错误 ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+所有的关卡都应该解决所有的错误和警告。一旦出现这些讨厌的东西，就应该立即解决，一个都不能留
+你可以在引擎中通过控制台输入"map check"命令运行地图检查功能。
+注意：在这方面用Linter检查甚至比编辑器还要严格，它还会捕获地图在加载过程自动解决的错误
+
+<a name="6.2"></a>
+<a name="levels-lighting-should-be-built"></a>
+### 6.2 Lighting Should Be Built ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ It is normal during development for levels to occasionaly not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+
+<a name="6.3"></a>
+<a name="levels-no-visible-z-fighting"></a>
+### 6.3 No Player Visible Z Fighting ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+
+<a name="6.4"></a>
+<a name="levels-mp-rules"></a>
+### 6.4 Marketplace Specific Rules ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+ <a name="6.4.1"></a>
+<a name="levels-mp-rules-overview"></a>
+### 6.4.1 Overview Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+ This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+ For example, `InteractionComponent_Overview`.
+ <a name="6.4.2"></a>
+<a name="levels-mp-rules-demo"></a>
+### 6.4.2 Demo Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+ If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
+ For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
+ 
+**[⬆ 回到最顶端](#table-of-contents)**
+
+
+<a name="7"></a>
+<a name="textures"></a>
+## 7. Textures ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ This section will focus on Texture assets and their internals.
+ ### Sections
+ > 7.1 [Dimensions Are Powers of 2](#textures-dimension)
+ > 7.2 [Texture Density Should Be Uniform](#textures-dimension)
+ > 7.3 [Textures Should Be No Bigger than 8192](#textures-max-size)
+ > 7.4 [Correct Texture Groups](#textures-textures-group)
+ <a name="7.1"></a>
+<a name="textures-dimensions"></a>
+### 7.1 Dimensions Are Powers of 2 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+ For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+ <a name="7.2"></a>
+<a name="textures-density"></a>
+### 7.2 Texture Density Should Be Uniform ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+ For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density. 
+ <a name="7.3"></a>
+<a name="textures-max-size"></a>
+### 7.3 Textures Should Be No Bigger than 8192 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+ <a name="7.4"></a>
+<a name="textures-group"></a>
+### 7.4 Textures Should Be Grouped Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+ Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
+
+**[⬆ 回到最顶端](#table-of-contents)**
+
 
 ## 贡献者
 
