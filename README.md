@@ -1251,31 +1251,32 @@ This is a subjective check on a per-project basis, but as a general rule any mes
 
 <a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
-### 6.2 Lighting Should Be Built ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
- It is normal during development for levels to occasionaly not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+### 6.2 一定要build光照 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+地图在开发状态时，不build光照是可以理解的，但是，一旦完成地图要进行测试或者要制作版本时，一定要编译光照。
 
 <a name="6.3"></a>
 <a name="levels-no-visible-z-fighting"></a>
-### 6.3 No Player Visible Z Fighting ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
- Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+### 6.3 避免Z Fighting ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+地图上的所有可见区域一定要避免 [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) 问题（译者注：就是Z轴上距离太近，造成物体渲染时互相纠缠在一起）
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
-### 6.4 Marketplace Specific Rules ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
- If a project is to be sold on the UE4 Marketplace, it must follow these rules.
- <a name="6.4.1"></a>
+### 6.4 针对市场的一些规则 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+如果时为UE4市场制作的工程，那么需要遵守以下规则。
+<a name="6.4.1"></a>
 <a name="levels-mp-rules-overview"></a>
-### 6.4.1 Overview Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
- If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
- This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
- For example, `InteractionComponent_Overview`.
- <a name="6.4.2"></a>
+### 6.4.1 预览关卡 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+如果你的工程包含有需要展示的资源，那么一定要创建一张预览这些资源效果的地图，命名必须包含"Overview"字样。
+如果你提供的是可时类型的资源，这张预览地图的名字需要遵守EPIC官方的约定 [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps)。
+比如叫做`InteractionComponent_Overview`。
+
+<a name="6.4.2"></a>
 <a name="levels-mp-rules-demo"></a>
-### 6.4.2 Demo Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
- If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
- If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
- For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
- 
+### 6.4.2 演示关卡 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+如果你的工程中包含有需要演示的功能或者需要一系列教程时，那么需要创建这么一张地图，命名包含有"Demo"字样，这种地图还要有文档，说明如何使用这张关卡。细节可以参照Epic官方提供的"Content Examples"这个示例工程。
+如果你的工程是游戏操作类型的工程，那么演示关卡和前面所说的预览关卡可以公用一张地图来完成。
+比如说`InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`。
+
 **[⬆ 回到最顶端](#table-of-contents)**
 
 
